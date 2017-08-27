@@ -22,13 +22,23 @@ class MsgAdapter(private val mMsgList: MutableList<Msg>): RecyclerView.Adapter<M
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder{
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.msg_item, parent, false)
+        val view = LayoutInflater.from(parent?.context).inflate(R.layout.msg_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val msg = mMsgList.get(position)
-//        if(msg.type == Msg.)
+        if (msg.type == Msg.FINAL_TYPE_RECEIVED) {
+//            如果是收到的消息，则显示左边的消息布局，将右边的消息布局隐藏
+            holder.leftLayout.visibility = View.VISIBLE;
+            holder.rightLayout.visibility = View.GONE;
+            holder.leftMsg.text = msg.content;
+        } else if(msg.type == Msg.FINAL_TYPE_SENT) {
+//            如果是发出的消息，则显示右边的消息布局，将左边的消息布局隐藏
+            holder.rightLayout.visibility = View.VISIBLE;
+            holder.leftLayout.visibility = View.GONE;
+            holder.rightMsg.text = msg.content;
+        }
     }
 
 

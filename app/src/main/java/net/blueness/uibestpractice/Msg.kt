@@ -5,6 +5,8 @@ package net.blueness.uibestpractice
  */
 
 class Msg(val content: String, val type: Int){
-    val FINAL_TYPE_RECEIVED = 0
-    val FINAL_TYPE_SENT = 1
+    companion object {
+        val FINAL_TYPE_RECEIVED = 0
+        val FINAL_TYPE_SENT = 1
+    }
 }
